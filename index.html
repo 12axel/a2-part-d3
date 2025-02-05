@@ -19,8 +19,7 @@ var svg = d3.select("#container")
 
 //Read the data
 d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/2_TwoNum.csv").then(function(data) {
-  
-  console.log("Parsed Data: ", data);
+
   // Add X axis
   var x = d3.scaleLinear()
     .domain([0, 4000])
@@ -36,7 +35,6 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
   svg.append("g")
     .call(d3.axisLeft(y));
 
-  console.log("we got here");
   // Add dots
   svg.append('g')
     .selectAll("circle")
