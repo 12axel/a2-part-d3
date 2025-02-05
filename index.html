@@ -18,7 +18,7 @@ var svg = d3.select("#container")
           "translate(" + margin.left + "," + margin.top + ")");
 
 //Read the data
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/2_TwoNum.csv", function(data) {
+d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/2_TwoNum.csv").then(function(data) {
 
   data.forEach(function(d) {
     d.GrLivArea = +d.GrLivArea;    // Convert "1256" → 1256
