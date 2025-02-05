@@ -76,6 +76,8 @@ d3.csv("penglings.csv").then(function(data) {
       .style("fill", function (d) { return color(d.species); } )
       .style("opacity", 0.6)
       .on("click", function(event, d) {
+        event.stopPropagation();
+        
         svg.selectAll(".dot-label").remove();
 
         svg.selectAll("circle")
@@ -163,7 +165,7 @@ d3.csv("penglings.csv").then(function(data) {
 
 
   svg.on("click", function(event, d) {
-      console.log("SVG Clicked!")
+      console.log("SVG Clicked 2!")
       svg.selectAll(".dot-label").remove();
 
       svg.selectAll("circle")
