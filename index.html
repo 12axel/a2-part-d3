@@ -101,6 +101,8 @@ d3.csv("penglings.csv").then(function(data) {
               .style("fill", "white")
               .style("text-anchor", "middle")
 
+            console.log("We got here 1!")
+
             svg.append("text")
               .attr("class", "dot-label")
               .attr("x", x(d.flipper_length_mm))
