@@ -19,11 +19,6 @@ var svg = d3.select("#container")
 
 //Read the data
 d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/2_TwoNum.csv").then(function(data) {
-
-  data.forEach(function(d) {
-    d.GrLivArea = +d.GrLivArea;    // Convert "1256" → 1256
-    d.SalePrice = +d.SalePrice;    // Convert "147500" → 147500
-  }); 
   
   console.log("Parsed Data: ", data);
   // Add X axis
