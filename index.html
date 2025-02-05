@@ -122,7 +122,7 @@ d3.csv("penglings.csv").then(function(data) {
             svg.append("text")
               .attr("class", "dot-label")
               .attr("x", x(d.flippper_length_mm))
-              .attr("y", y(d.body_mass_g) + 20)
+              .attr("y", y(d.body_mass_g) + 15)
               .text(`Bill Length: ${d.bill_length_mm}mm`)
               .style("font-size", 9)
               .style("fill", "white")
