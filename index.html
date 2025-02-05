@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<div id="container"></div>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script type="module">
+
+  //IMPORTANT: As I was working through this project, I used AI tools like ChatGPT and Copilot to both help debug issues
+  //in my code and fulfill the gaps of knowledge I had regaring how to program using D3.js as this is a library that I 
+  //have never used before. In addition to this, I also used the links "https://www.geeksforgeeks.org/d3-js-symbolstar-symbol/"
+  //and "https://www.tutorialspoint.com/d3js/d3js_introduction_to_svg.htm" to be able to figure out how to use D3.js to draw 
+  //basic shapes, as well as stars.
+
+  console.log(d3);
+
+  let circleColor = "gold";
+  let skyColor = "00FFFF";
+  let treesPlanted = 0;
+  let grassDirection = "right";
+  let roofColor = "red";
+
+  const svg = d3.select("#container")
+    .append("svg")
+    .attr("width", 1425)
+    .attr("height", 700)
+    .style("background-color", skyColor);
+
+  const starGroup = svg.append("g").attr("id", "stars");
+  const starSymbol = d3.symbol().type(d3.symbolStar).size(100);
+  function createStars() {
+    for (let y = 0; y < 600; y += 100) {
+      for (let x = 25; x < 1425; x += 100) {
+        const xOffset = (y % 200) === 0 ? 50 : 0;
+        starGroup.append("path")
+          .attr("d", starSymbol)
+          .attr("transform", `translate(${x + xOffset}, ${y + 15})`)
+          .attr("fill", "lightyellow");
+      }
+    }
+    twinkleStar();
+  }
+
+  const grassRect = svg.append("rect")
+    .attr("x", 0)
+    .attr("y", 550)
+    .attr("width", 1425)
+    .attr("height", 200)
+    .attr("fill", "#39FF14")
+    .on("click", () => {
+      grassClickHandler();
+    });
+
+  const circle = svg.append("circle")
+    .attr("cx", -50)
+    .attr("cy", 100)
+    .attr("r", 50)
+    .attr("fill", circleColor);
+
+  const house = svg.append("rect")
+    .attr("x", 50)
+    .attr("y", 400)
+    .attr("width", 200)
+    .attr("height", 250)
+    .attr("fill", "blue");
+
+  const door = svg.append("rect")
+    .attr("x", 75)
+    .attr("y", 475)
+    .attr("width", 75)
+    .attr("height", 175)
+    .attr("fill", "brown");
+
+  const windowRect = svg.append("rect")
+    .attr("x", 160)
+    .attr("y", 475)
+    .attr("width", 75)
+    .attr("height", 75)
+    .attr("fill", "grey");
+
+  const windowLine1 = svg.append("line")
+    .attr("x1", 160)
+    .attr("y1", 512.5)
+    .attr("x2", 235)
+    .attr("y2", 512.5)
+    .attr("stroke", "black")
+    .attr("stroke-width", 2);
+
+  const windowLine2 = svg.append("line")
+    .attr("x1", 197.5)
+    .attr("y1", 475)
+    .attr("x2", 197.5)
+    .attr("y2", 550)
+    .attr("stroke", "black")
+    .attr("stroke-width", 2);
+
+  const circle2 = svg.append("circle")
+    .attr("cx", 130)
+    .attr("cy", 540)
+    .attr("r", 5)
+    .attr("fill", "yellow");
+
+  const roof = svg.append("polygon")
+    .attr("points", "25,400 275,400 150,300")
+    .attr("fill", "red")
+    .on("click", () => {
+      roofColor = roofColor === "red" ? "purple" : "red";
+      roof.attr("fill", roofColor);
+    });
+
+
+
+  svg.on("click", () => {
+    treesPlanted++;
+
+    if (treesPlanted >= 1) {
+      svg.append("rect")
+        .attr("x", 350)
+        .attr("y", 500)
+        .attr("width", 50)
+        .attr("height", 75)
+        .attr("fill", "brown");
+
+      svg.append("polygon")
+        .attr("points", "325,525 425,525 375,450")
+        .attr("fill", "green");
+
+      svg.append("polygon")
+        .attr("points", "325,475 425,475 375,400")
+        .attr("fill", "green");
+
+      svg.append("polygon")
+        .attr("points", "325,425 425,425 375,350")
+        .attr("fill", "green");
+
+      svg.append("polygon")
+        .attr("points", "325,375 425,375 375,300")
+        .attr("fill", "green");
+    }
+
+
+    if (treesPlanted >= 2) {
+      svg.append("rect")
+        .attr("x", 550)
+        .attr("y", 550)
+        .attr("width", 50)
+        .attr("height", 75)
+        .attr("fill", "brown");
+
+      svg.append("polygon")
+        .attr("points", "525,575 625,575 575,500")
+        .attr("fill", "green");
+
+      svg.append("polygon")
+        .attr("points", "525,525 625,525 575,450")
+        .attr("fill", "green");
+
+      svg.append("polygon")
+        .attr("points", "525,475 625,475 575,400")
+        .attr("fill", "green");
+
+      svg.append("polygon")
+        .attr("points", "525,425 625,425 575,350")
+        .attr("fill", "green");
+    }
+
+    if (treesPlanted >= 3) {
+      svg.append("rect")
+        .attr("x", 750)
+        .attr("y", 475)
+        .attr("width", 50)
+        .attr("height", 75)
+        .attr("fill", "brown");
+
+      svg.append("polygon")
+        .attr("points", "725,500 825,500 775,425")
+        .attr("fill", "green");
+
+      svg.append("polygon")
+        .attr("points", "725,450 825,450 775,375")
+        .attr("fill", "green");
+
+      svg.append("polygon")
+        .attr("points", "725,400 825,400 775,325")
+        .attr("fill", "green");
+
+      svg.append("polygon")
+        .attr("points", "725,350 825,350 775,275")
+        .attr("fill", "green");
+    }
+
+    if (treesPlanted >= 4) {
+      svg.append("rect")
+        .attr("x", 950)
+        .attr("y", 625)
+        .attr("width", 50)
+        .attr("height", 75)
+        .attr("fill", "brown");
+
+      svg.append("polygon")
+        .attr("points", "925,650 1025,650 975,575")
+        .attr("fill", "green");
+
+      svg.append("polygon")
+        .attr("points", "925,600 1025,600 975,525")
+        .attr("fill", "green");
+
+      svg.append("polygon")
+        .attr("points", "925,550 1025,550 975,475")
+        .attr("fill", "green");
+
+      svg.append("polygon")
+        .attr("points", "925,500 1025,500 975,425")
+        .attr("fill", "green");
+    }
+
+    if (treesPlanted >= 5) {
+      svg.append("rect")
+        .attr("x", 1150)
+        .attr("y", 500)
+        .attr("width", 50)
+        .attr("height", 75)
+        .attr("fill", "brown");
+
+      svg.append("polygon")
+        .attr("points", "1125,525 1225,525 1175,450")
+        .attr("fill", "green");
+
+      svg.append("polygon")
+        .attr("points", "1125,475 1225,475 1175,400")
+        .attr("fill", "green");
+
+      svg.append("polygon")
+        .attr("points", "1125,425 1225,425 1175,350")
+        .attr("fill", "green");
+
+      svg.append("polygon")
+        .attr("points", "1125,375 1225,375 1175,300")
+        .attr("fill", "green");
+    }
+
+    circleGroup.raise();
+  });
+
+
+  const body = svg.append("line")
+    .attr("x1", 1300)
+    .attr("y1", 550)
+    .attr("x2", 1300)
+    .attr("y2", 625)
+    .attr("stroke", "black")
+    .attr("stroke-width", 5);
+
+
+  const rightLeg = svg.append("line")
+    .attr("x1", 1300)
+    .attr("y1", 625)
+    .attr("x2", 1325)
+    .attr("y2", 650)
+    .attr("stroke", "black")
+    .attr("stroke-width", 5);
+
+
+  const leftLeg = svg.append("line")
+    .attr("x1", 1300)
+    .attr("y1", 625)
+    .attr("x2", 1275)
+    .attr("y2", 650)
+    .attr("stroke", "black")
+    .attr("stroke-width", 5);
+
+  const leftArm = svg.append("line")
+    .attr("x1", 1300)
+    .attr("y1", 587.5)
+    .attr("x2", 1275)
+    .attr("y2", 612.5)
+    .attr("stroke", "black")
+    .attr("stroke-width", 5);
+
+  const rightArm = svg.append("line")
+    .attr("x1", 1300)
+    .attr("y1", 587.5)
+    .attr("x2", 1325)
+    .attr("y2", 612.5)
+    .attr("stroke", "black")
+    .attr("stroke-width", 5);
+
+
+  function createGrass(direction) {
+    svg.selectAll(".grass-line").remove();
+    if (grassDirection == "right") {
+      for (let y = 550; y < 700; y += 25) {
+        for (let x = 0; x < 1425; x += 25) {
+          const xOffset = (y % 50) === 0 ? 12.5 : 0;
+          svg.append("line")
+            .attr("class", "grass-line")
+            .attr("x1", x + 25 + xOffset)
+            .attr("y1", y)
+            .attr("x2", x + xOffset)
+            .attr("y2", y + 25)
+            .attr("stroke", "green")
+            .attr("stroke-width", 2)
+            .on("click", () => {
+              grassClickHandler();
+            })
+        }
+      }
+    } else {
+      for (let y = 550; y < 700; y += 25) {
+        for (let x = 0; x < 1425; x += 25) {
+          const xOffset = (y % 50) === 0 ? 12.5 : 0;
+          svg.append("line")
+            .attr("class", "grass-line")
+            .attr("x1", x + xOffset)
+            .attr("y1", y)
+            .attr("x2", x + 25 + xOffset)
+            .attr("y2", y + 25)
+            .attr("stroke", "green")
+            .attr("stroke-width", 2)
+            .on("click", () => {
+              grassClickHandler();
+            })
+        }
+      }
+    }
+
+    house.raise();
+    door.raise();
+    circle2.raise();
+    windowRect.raise();
+    windowLine1.raise();
+    windowLine2.raise();
+    body.raise();
+    rightLeg.raise();
+    leftLeg.raise();
+    leftArm.raise();
+    rightArm.raise();
+  }
+
+  function grassClickHandler() {
+    grassDirection = grassDirection === "right" ? "left" : "right";
+    createGrass(grassDirection);
+  }
+
+  createGrass(grassDirection);
+
+  const circleGroup = svg.append("g").attr("id", "circles");
+
+  const circle3 = circleGroup.append("circle")
+    .attr("cx", 1300)
+    .attr("cy", 530)
+    .attr("r", 25)
+    .attr("fill", "peachpuff");
+
+
+
+  function moveCircleAndChangeCircleAndSkyColor() {
+    circle.transition()
+      .duration(7000)
+      .attr("cx", 1475)
+      .on("end", () => {
+        circleColor = circleColor === "gold" ? "lightyellow" : "gold";
+        skyColor = skyColor === "00FFFF" ? "000080" : "00FFFF";
+        circle.attr("cx", -50)
+          .attr("fill", circleColor)
+        svg.style("background-color", skyColor);
+        if (skyColor === "000080") {
+          createStars();
+          windowRect.attr("fill", "yellow");
+        }
+        else {
+          starGroup.selectAll("path").remove();
+          windowRect.attr("fill", "grey");
+        }
+        moveCircleAndChangeCircleAndSkyColor()
+      });
+  }
+  moveCircleAndChangeCircleAndSkyColor();
+
+  function moveLeftArm() {
+    leftArm.transition()
+      .duration(500)
+      .attr("y2", 562.5)
+      .transition()
+      .duration(500)
+      .attr("y2", 612.5)
+      .on("end", () => {
+        moveLeftArm();
+      });
+  }
+
+  moveLeftArm();
+
+  function moveRightArm() {
+    rightArm.transition()
+      .duration(500)
+      .attr("y2", 562.5)
+      .transition()
+      .duration(500)
+      .attr("y2", 612.5)
+      .on("end", () => {
+        moveRightArm();
+      });
+  }
+
+  moveRightArm();
+
+  function twinkleStar() {
+    console.log("Twinkle Star function called");
+    starGroup.selectAll("path")
+      .transition()
+      .duration(1000)
+      .attr("fill-opacity", "0.25")
+      .transition()
+      .duration(4000)
+      .attr("fill-opacity", "1.25")
+  }
+
+</script>
