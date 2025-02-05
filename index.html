@@ -3,19 +3,13 @@
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 <script type="module">
 
-  //IMPORTANT: As I was working through this project, I used AI tools like ChatGPT and Copilot to both help debug issues
-  //in my code and fulfill the gaps of knowledge I had regaring how to program using D3.js as this is a library that I 
-  //have never used before. In addition to this, I also used the links "https://www.geeksforgeeks.org/d3-js-symbolstar-symbol/"
-  //and "https://www.tutorialspoint.com/d3js/d3js_introduction_to_svg.htm" to be able to figure out how to use D3.js to draw 
-  //basic shapes, as well as stars.
-
-// Set the dimensions and margins of the graph
+ // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 60},
     width = 460 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 
-// Append the svg object to the body of the page
-var svg = d3.select("container")
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz")
   .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -23,23 +17,21 @@ var svg = d3.select("container")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-// Read the data
-d3.csv("penglings.csv", function(data) {
+//Read the data
+d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/2_TwoNum.csv", function(data) {
 
-  // Define the x-axis scale (flipper length)
+  // Add X axis
   var x = d3.scaleLinear()
-    .domain([170, 240])
-    .range([0, width]);
-
+    .domain([0, 4000])
+    .range([ 0, width ]);
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(x));
 
-  // Define the y-axis scale (body mass)
+  // Add Y axis
   var y = d3.scaleLinear()
-    .domain([2000, 6500])
-    .range([height, 0]);
-
+    .domain([0, 500000])
+    .range([ height, 0]);
   svg.append("g")
     .call(d3.axisLeft(y));
 
@@ -49,9 +41,10 @@ d3.csv("penglings.csv", function(data) {
     .data(data)
     .enter()
     .append("circle")
-      .attr("cx", function(d) { return x(d.flipper_length_mm); })
-      .attr("cy", function(d) { return y(d.body_mass_g); })
-      .attr("r", 3)
-      .style("fill", "#69b3a2");
-});
+      .attr("cx", function (d) { return x(d.GrLivArea); } )
+      .attr("cy", function (d) { return y(d.SalePrice); } )
+      .attr("r", 1.5)
+      .style("fill", "#69b3a2")
+
+})
 </script>
