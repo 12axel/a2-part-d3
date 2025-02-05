@@ -97,7 +97,7 @@ d3.csv("penglings.csv").then(function(data) {
               .attr("x", x(d.flipper_length_mm))
               .attr("y", y(d.body_mass_g) - 10)
               .text(d.species)
-              .style("font-size", 10)
+              .style("font-size", 9)
               .style("fill", "white")
               .style("text-anchor", "middle")
 
@@ -106,7 +106,7 @@ d3.csv("penglings.csv").then(function(data) {
               .attr("x", x(d.flipper_length_mm))
               .attr("y", y(d.body_mass_g))
               .text(`Flipper Length: ${d.flipper_length_mm}mm`)
-              .style("font-size", 10)
+              .style("font-size", 9)
               .style("fill", "white")
               .style("text-anchor", "middle")
 
@@ -115,7 +115,7 @@ d3.csv("penglings.csv").then(function(data) {
               .attr("x", x(d.flipper_length_mm))
               .attr("y", y(d.body_mass_g) + 10)
               .text(`Body Mass: ${d.body_mass_g}g`)
-              .style("font-size", 10)
+              .style("font-size", 9)
               .style("fill", "white")
               .style("text-anchor", "middle")
 
@@ -124,7 +124,7 @@ d3.csv("penglings.csv").then(function(data) {
               .attr("x", x(d.bill_length_mm))
               .attr("y", y(d.body_mass_g) + 20 )
               .text(`Bill Length: ${d.bill_length_mm}mm`)
-              .style("font-size", 10)
+              .style("font-size", 9)
               .style("fill", "white")
               .style("text-anchor", "middle")
           })
