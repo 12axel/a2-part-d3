@@ -26,11 +26,7 @@ var svg = d3.select("container")
 // Read the data
 d3.csv("penglings.csv", function(data) {
 
-  // Convert numeric values from strings to numbers
-  data.forEach(function(d) {
-      d.flipper_length_mm = +d.flipper_length_mm;
-      d.body_mass_g = +d.body_mass_g;
-  });
+
 
   // Define the x-axis scale (flipper length)
   var x = d3.scaleLinear()
