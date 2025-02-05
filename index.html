@@ -19,8 +19,7 @@ var svg = d3.select("#container")
 
 //Read the data
 d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/2_TwoNum.csv", function(data) {
-  console.log("Min and Max for GrLivArea:", d3.min(data, d => d.GrLivArea), d3.max(data, d => d.GrLivArea));
-  console.log("Min and Max for SalePrice:", d3.min(data, d => d.SalePrice), d3.max(data, d => d.SalePrice));
+  console.log("Parsed Data: ", data);
   // Add X axis
   var x = d3.scaleLinear()
     .domain([0, 4000])
