@@ -95,7 +95,7 @@ d3.csv("penglings.csv").then(function(data) {
             svg.append("text")
               .attr("class", "dot-label")
               .attr("x", x(d.flipper_length_mm))
-              .attr("y", y(d.body_mass_g) - 10)
+              .attr("y", y(d.body_mass_g) - 20)
               .text(d.species)
               .style("font-size", 9)
               .style("fill", "white")
