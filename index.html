@@ -72,6 +72,27 @@ d3.csv("penglings.csv").then(function(data) {
       .style("fill", function (d) { return color(d.species); } )
       .style("opacity", 0.6)
 
+  // Add legend based on the species colors
+  var legend = svg.append("g")
+    .attr("transform", "translate(" + (width  + 30 ) + ", 0)" )
+
+  var legendItems = color.domain()
+
+  legendItems.array.forEach(function(d, i) {
+    legend.append("rect")
+      .attr("x", 0)
+      .attr("y", i * 20)
+      .attr("width", 10)
+      .attr("height", 10)
+      .style("fill", color(d))
+
+    legend.append("text")
+      .attr("x", 20)
+      .attr("y", i * 20 + 10)
+      .text(d)
+      .style("font-size", 12)
+  });
+
 
 })
 </script>
