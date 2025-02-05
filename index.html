@@ -78,6 +78,12 @@ d3.csv("penglings.csv").then(function(data) {
       .on("click", function(event, d) {
         svg.selectAll(".dot-label").remove();
 
+        svg.selectAll("circle")
+          .transition()
+          .duration(1000)
+          .attr("r", function (d) { return z(d.bill_length_mm); } )
+          .style("opacity", 0.6)
+
         d3.select(this)
           .transition()
           .duration(1000)
@@ -87,17 +93,16 @@ d3.csv("penglings.csv").then(function(data) {
         svg.append("text")
           .attr("class", "dot-label")
           .attr("x", x(d.flipper_length_mm))
-          .attr("y", y(d.body_mass_g))
+          .attr("y", y(d.body_mass_g) - 10)
           .text(d.species)
           .style("font-size", 10)
           .style("fill", "white")
           .style("text-anchor", "middle")
-          .attr("dy", "0.3em")
 
         svg.append("text")
           .attr("class", "dot-label")
           .attr("x", x(d.flipper_length_mm))
-          .attr("y", y(d.body_mass_g) + 10)
+          .attr("y", y(d.body_mass_g))
           .text(d.species)
           .style("font-size", 10)
           .style("fill", "white")
