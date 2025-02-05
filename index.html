@@ -78,7 +78,7 @@ d3.csv("penglings.csv").then(function(data) {
 
   var legendItems = color.domain()
 
-  legendItems.array.forEach(function(d, i) {
+  legendItems.forEach(function(d, i) {
     legend.append("rect")
       .attr("x", 0)
       .attr("y", i * 20)
