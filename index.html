@@ -82,6 +82,7 @@ d3.csv("penglings.csv").then(function(data) {
           .transition()
           .duration(1000)
           .attr("r", function (d) { return z(d3.select(this).datum().bill_length_mm) + 40; } )
+          .style("opacity", 1)
 
         svg.append("text")
           .attr("class", "dot-label")
@@ -92,6 +93,16 @@ d3.csv("penglings.csv").then(function(data) {
           .style("fill", "white")
           .style("text-anchor", "middle")
           .attr("dy", "0.3em")
+
+        svg.append("text")
+          .attr("class", "dot-label")
+          .attr("x", x(d.flipper_length_mm))
+          .attr("y", y(d.body_mass_g) + 10)
+          .text(d.species)
+          .style("font-size", 10)
+          .style("fill", "white")
+          .style("text-anchor", "middle")
+          .text(`Bill: ${d.bill_length_mm}mm`);
       })
 
   // Add legend based on the species colors
