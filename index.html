@@ -82,17 +82,23 @@ d3.csv("penglings.csv").then(function(data) {
 
   var legendItems = color.domain()
 
+  legend.append("text")
+    .attr("x", 0)
+    .attr("y", 10)
+    .text("Species legend")
+    .style("font-size", 14)
+
   legendItems.forEach(function(d, i) {
     legend.append("rect")
       .attr("x", 0)
-      .attr("y", i * 20)
+      .attr("y", (i * 20) + 20)
       .attr("width", 10)
       .attr("height", 10)
       .style("fill", color(d))
 
     legend.append("text")
       .attr("x", 20)
-      .attr("y", i * 20 + 10)
+      .attr("y", i * 20 + 10 + 20)
       .text(d)
       .style("font-size", 12)
   });
