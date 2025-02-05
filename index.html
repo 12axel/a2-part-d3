@@ -17,6 +17,7 @@ var svg = d3.select("#container")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")")
     .on("click", function(event, d) {
+      console.log("SVG Clicked!")
       svg.selectAll(".dot-label").remove();
 
       svg.selectAll("circle")
