@@ -75,6 +75,24 @@ d3.csv("penglings.csv").then(function(data) {
       .attr("r", function (d) { return z(d.bill_length_mm); } )
       .style("fill", function (d) { return color(d.species); } )
       .style("opacity", 0.6)
+      .on("click", function(event, d) {
+        svg.selectAll(".dot-label").remove();
+
+        d3.select(this)
+          .transition()
+          .duration(1000)
+          .attr("r", function (d) { return z(d3.select(this).datum().bill_length_mm) + 15; } )
+
+        svg.append("text")
+          .attr("class", "dot-label")
+          .attr("x", x(d.flipper_length_mm))
+          .attr("y", y(d.body_mass_g))
+          .text(d.species)
+          .style("font-size", 14)
+          .style("fill", "white")
+          .style("text-anchor", "middle")
+          .attr("dy", "0.3em")
+      })
 
   // Add legend based on the species colors
   var legend = svg.append("g")
