@@ -47,14 +47,14 @@ d3.csv("penglings.csv").then(function(data) {
     
   // Add X axis label
   svg.append("text")
-    .attr("text-anchor", "end")
+    .attr("text-anchor", "center")
     .attr("x", width)
     .attr("y", height + margin.top + 10)
     .text("Flipper Length (mm)");
 
   // Add Y axis label
   svg.append("text")
-    .attr("text-anchor", "end")
+    .attr("text-anchor", "center")
     .attr("transform", "rotate(-90)")
     .attr("y", -margin.left + 20)
     .attr("x", -margin.top)
