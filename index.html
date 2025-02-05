@@ -114,7 +114,7 @@ d3.csv("penglings.csv").then(function(data) {
               .attr("class", "dot-label")
               .attr("x", x(d.flipper_length_mm))
               .attr("y", y(d.body_mass_g) + 10)
-              .text(`Body Mass: ${d.bill_length_m}g`)
+              .text(`Body Mass: ${d.bill_length_mm}g`)
               .style("font-size", 9)
               .style("fill", "white")
               .style("text-anchor", "middle")
