@@ -17,6 +17,10 @@ var svg = d3.select("#container")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
+console.log("SVG Width:", svg.attr("width"));
+console.log("SVG Height:", svg.attr("height"));
+
+
 //Read the data
 d3.csv("penglings.csv").then(function(data) {
 
