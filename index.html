@@ -76,7 +76,7 @@ d3.csv("penglings.csv").then(function(data) {
       .style("fill", function (d) { return color(d.species); } )
       .style("opacity", 0.6)
       .on("click", function(event, d) {
-        
+        const currentOpacity = d3.select(this).style("opacity");
         svg.selectAll(".dot-label").remove();
 
         svg.selectAll("circle")
@@ -136,6 +136,14 @@ d3.csv("penglings.csv").then(function(data) {
           })
       })
 
+  // Create a dictionary to map the species' visibility
+  var speciesVisibility = {
+    "Adelie": true,
+    "Gentoo": true,
+    "Chinstrap": true
+  }
+
+
   // Add legend based on the species colors
   var legend = svg.append("g")
     .attr("transform", "translate(" + (width  + 30 ) + ", 0)" )
@@ -155,6 +163,17 @@ d3.csv("penglings.csv").then(function(data) {
       .attr("width", 10)
       .attr("height", 10)
       .style("fill", color(d))
+      .on("click", function() {
+        
+        speciesVisibility[d] = !speciesVisibility[d]
+
+        console.log(speciesVisibility[d]);
+        svg.selectAll("circle")
+          .filter(function(e) { return e.species == d; })
+          .transition()
+          .duration(1000)
+          .style("opacity", speciesVisibility[d] ? 0.6 : 0)
+      })
 
     legend.append("text")
       .attr("x", 20)
