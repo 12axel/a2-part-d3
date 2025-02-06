@@ -83,7 +83,10 @@ d3.csv("penglings.csv").then(function(data) {
         if(currentOpacity == 0) {
           return;
         }
-        svg.selectAll(".dot-label").remove();
+
+        svg.selectAll(".dot-label-Adelie").remove();
+        svg.selectAll(".dot-label-Gentoo").remove();
+        svg.selectAll(".dot-label-Chinstrap").remove();
 
         svg.selectAll("circle")
           .filter(function(e) { return  d3.select(this).style("opacity") != 0; })
@@ -101,7 +104,7 @@ d3.csv("penglings.csv").then(function(data) {
           .style("opacity", 1)
           .on("end", function() {
             svg.append("text")
-              .attr("class", "dot-label")
+              .attr("class", "dot-label-" + d.species)
               .attr("x", x(d.flipper_length_mm))
               .attr("y", y(d.body_mass_g) - 20)
               .text(d.species)
@@ -112,7 +115,7 @@ d3.csv("penglings.csv").then(function(data) {
             console.log("We got here 13!")
 
             svg.append("text")
-              .attr("class", "dot-label")
+              .attr("class", "dot-label-" + d.species)
               .attr("x", x(d.flipper_length_mm))
               .attr("y", y(d.body_mass_g) - 10 )
               .text(`Flipper Length: ${d.flipper_length_mm}mm`)
@@ -121,7 +124,7 @@ d3.csv("penglings.csv").then(function(data) {
               .style("text-anchor", "middle")
 
             svg.append("text")
-              .attr("class", "dot-label")
+              .attr("class", "dot-label-" + d.species)
               .attr("x", x(d.flipper_length_mm))
               .attr("y", y(d.body_mass_g))
               .text(`Body Mass: ${d.body_mass_g}g`)
@@ -130,7 +133,7 @@ d3.csv("penglings.csv").then(function(data) {
               .style("text-anchor", "middle")
 
             svg.append("text")
-              .attr("class", "dot-label")
+              .attr("class", "dot-label-" + d.species)
               .attr("x", x(d.flipper_length_mm))
               .attr("y", y(d.body_mass_g) + 10)
               .text(`Bill Length: ${d.bill_length_mm}mm`)
@@ -163,6 +166,7 @@ d3.csv("penglings.csv").then(function(data) {
     .style("font-size", 14)
 
   legendItems.forEach(function(d, i) {
+
     legend.append("rect")
       .attr("x", 0)
       .attr("y", (i * 20) + 20)
@@ -170,8 +174,10 @@ d3.csv("penglings.csv").then(function(data) {
       .attr("height", 10)
       .style("fill", color(d))
       .on("click", function() {
+
+        svg.selectAll(".dot-label-" + d).remove();
         
-        console.log("Legend Clicked 2!")
+        console.log("Legend Clicked 5!")
         speciesVisibility[d] = !speciesVisibility[d]
 
         console.log(speciesVisibility[d]);
