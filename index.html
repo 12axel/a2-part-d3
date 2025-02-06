@@ -171,14 +171,16 @@ d3.csv("penglings.csv").then(function(data) {
       .style("fill", color(d))
       .on("click", function() {
         
-        console.log("Legend Clicked!")
+        console.log("Legend Clicked 2!")
         speciesVisibility[d] = !speciesVisibility[d]
 
         console.log(speciesVisibility[d]);
+
         svg.selectAll("circle")
           .filter(function(e) { return e.species == d; })
           .transition()
           .duration(1000)
+          .attr("r", function (d) { return z(d.bill_length_mm); } )
           .style("opacity", speciesVisibility[d] ? 0.6 : 0)
       })
 
