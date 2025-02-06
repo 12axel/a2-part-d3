@@ -78,12 +78,15 @@ d3.csv("penglings.csv").then(function(data) {
       .on("click", function(event, d) {
         const currentOpacity = d3.select(this).style("opacity");
 
+        console.log("We got here 123!")
+
         if(currentOpacity == 0) {
           return;
         }
         svg.selectAll(".dot-label").remove();
 
         svg.selectAll("circle")
+          .filter(function(e) { return  d3.select(this).style("opacity") != 0; })
           .transition()
           .duration(1000)
           .attr("r", function (d) { return z(d.bill_length_mm); } )
