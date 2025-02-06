@@ -92,7 +92,6 @@ d3.csv("penglings.csv").then(function(data) {
           .attr("r", function (d) { return z(d.bill_length_mm); } )
           .style("opacity", 0.6)
 
-          const isSelected = 
         d3.select(this).raise();
 
         d3.select(this)
