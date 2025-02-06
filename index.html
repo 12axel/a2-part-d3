@@ -165,6 +165,7 @@ d3.csv("penglings.csv").then(function(data) {
       .style("fill", color(d))
       .on("click", function() {
         
+        console.log("Legend Clicked!")
         speciesVisibility[d] = !speciesVisibility[d]
 
         console.log(speciesVisibility[d]);
