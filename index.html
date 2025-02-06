@@ -64,6 +64,24 @@ d3.csv("penglings.csv").then(function(data) {
     .attr("x", -height / 2)
     .text("Body Mass (g)")
 
+  // Add vertical gridlines
+  svg.append("g")
+    .attr("class", "grid")
+    .call(d3.axisLeft(y)
+      .tickSize(-width)
+      .tickFormat("")
+    )
+
+  // Add horizontal gridlines
+  svg.append("g")
+    .attr("class", "grid")
+    .call(d3.axisBottom(x)
+      .tickSize(height)
+      .tickFormat("")
+    )
+
+console.log("vertical lines called")
+
   // Add dots
   svg.append('g')
     .selectAll("circle")
