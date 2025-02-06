@@ -76,7 +76,6 @@ d3.csv("penglings.csv").then(function(data) {
       .style("fill", function (d) { return color(d.species); } )
       .style("opacity", 0.6)
       .on("click", function(event, d) {
-        //event.stopPropagation();
         
         svg.selectAll(".dot-label").remove();
 
@@ -86,6 +85,7 @@ d3.csv("penglings.csv").then(function(data) {
           .attr("r", function (d) { return z(d.bill_length_mm); } )
           .style("opacity", 0.6)
 
+          const isSelected = 
         d3.select(this).raise();
 
         d3.select(this)
@@ -162,19 +162,6 @@ d3.csv("penglings.csv").then(function(data) {
       .text(d)
       .style("font-size", 12)
   });
-
-
-  svg.on("click", function(event, d) {
-      console.log("SVG Clicked 2!")
-      svg.selectAll(".dot-label").remove();
-
-      svg.selectAll("circle")
-        .transition()
-        .duration(1000)
-        .attr("r", function (d) { return z(d.bill_length_mm); } )
-        .style("opacity", 0.6)
-    });
-
 
 })
 </script>
