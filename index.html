@@ -77,6 +77,10 @@ d3.csv("penglings.csv").then(function(data) {
       .style("opacity", 0.6)
       .on("click", function(event, d) {
         const currentOpacity = d3.select(this).style("opacity");
+
+        if(currentOpacity == 0) {
+          return;
+        }
         svg.selectAll(".dot-label").remove();
 
         svg.selectAll("circle")
