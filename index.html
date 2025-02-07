@@ -70,7 +70,7 @@ d3.csv("penglings.csv").then(function(data) {
   svg.append("g")
     .attr("class", "grid")
     .call(d3.axisLeft(y)
-      .tickSize(-width)
+      .tickSize(width)
       .tickFormat("")
     )
 
