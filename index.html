@@ -15,7 +15,6 @@ var margin = {top: 30, right: 30, bottom: 50, left: 60},
     width = 460 - margin.left - margin.right,
     height = 420 - margin.top - margin.bottom;
 
-
 var svg = d3.select("#container")
   .append("svg")
     .attr("width", 1425)
@@ -26,7 +25,6 @@ var svg = d3.select("#container")
 
 console.log("SVG Width:", svg.attr("width"));
 console.log("SVG Height:", svg.attr("height"));
-
 
 //Read the data
 d3.csv("penglings.csv").then(function(data) {
@@ -69,7 +67,6 @@ d3.csv("penglings.csv").then(function(data) {
     .attr("x", -height / 2)
     .text("Body Mass (g)")
 
-  
   svg.append("g")
     .attr("class", "grid")
     .call(d3.axisLeft(y)
@@ -77,7 +74,6 @@ d3.csv("penglings.csv").then(function(data) {
       .tickFormat("")
     )
 
-  
   svg.append("g")
     .attr("class", "grid")
     .call(d3.axisBottom(x)
@@ -173,7 +169,6 @@ console.log("vertical lines called")
     "Gentoo": true,
     "Chinstrap": true
   }
-
 
   var legend = svg.append("g")
     .attr("transform", "translate(" + (width  + 30) + ", 0)" )
