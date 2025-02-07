@@ -100,7 +100,7 @@ console.log("vertical lines called")
       .attr("r", function (d) { return z(d.bill_length_mm); } )
       .style("fill", function (d) { return color(d.species); } )
       .style("opacity", 0.6)
-      .on("click", (event, d) => {
+      .on("click", function(event, d) {
         const currentOpacity = d3.select(this).style("opacity");
 
         console.log("We got here 123!")
@@ -127,7 +127,7 @@ console.log("vertical lines called")
           .duration(1000)
           .attr("r", function (d) { return z(d3.select(this).datum().bill_length_mm) + 40; } )
           .style("opacity", 1)
-          .on("end", () => {
+          .on("end", function() {
             svg.append("text")
               .attr("class", "dot-label-" + d.species)
               .attr("x", x(d.flipper_length_mm))
@@ -198,7 +198,7 @@ console.log("vertical lines called")
       .attr("width", 10)
       .attr("height", 10)
       .style("fill", color(d))
-      .on("click", () => {
+      .on("click", function() {
 
         svg.selectAll(".dot-label-" + d).remove();
         
