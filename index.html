@@ -10,12 +10,12 @@
 //scatter plot. Additionaly, I also used my code from the previous project in order to reference
 //some of the relevant d3.js functions I needed for this project.
 
- // set the dimensions and margins of the graph
+// set the dimensions and margins of the graph
 var margin = {top: 30, right: 30, bottom: 50, left: 60},
     width = 460 - margin.left - margin.right,
     height = 420 - margin.top - margin.bottom;
 
-// append the svg object to the body of the page
+
 var svg = d3.select("#container")
   .append("svg")
     .attr("width", 1425)
@@ -31,12 +31,10 @@ console.log("SVG Height:", svg.attr("height"));
 //Read the data
 d3.csv("penglings.csv").then(function(data) {
 
-  // Assign colors based on different species
   var color = d3.scaleOrdinal()
     .domain(["Adelie", "Gentoo", "Chinstrap"])
     .range([ "red", "purple", "darkgreen"])
 
-  // Create a scale for the size of the dots based on the bill length
   var z = d3.scaleLinear()
     .domain([30, 60])
     .range([ 4, 9]);
@@ -71,7 +69,7 @@ d3.csv("penglings.csv").then(function(data) {
     .attr("x", -height / 2)
     .text("Body Mass (g)")
 
-  // Add vertical gridlines
+  
   svg.append("g")
     .attr("class", "grid")
     .call(d3.axisLeft(y)
@@ -79,7 +77,7 @@ d3.csv("penglings.csv").then(function(data) {
       .tickFormat("")
     )
 
-  // Add horizontal gridlines
+  
   svg.append("g")
     .attr("class", "grid")
     .call(d3.axisBottom(x)
@@ -170,7 +168,6 @@ console.log("vertical lines called")
           })
       })
 
-  // Create a dictionary to map the species' visibility
   var speciesVisibility = {
     "Adelie": true,
     "Gentoo": true,
@@ -178,7 +175,6 @@ console.log("vertical lines called")
   }
 
 
-  // Add legend based on the species colors
   var legend = svg.append("g")
     .attr("transform", "translate(" + (width  + 30) + ", 0)" )
 
